@@ -2,11 +2,8 @@
 {
     using KudosSlackbot.Client.Http.Slack.Clients;
     using KudosSlackbot.Data.Gateway.Slack;
-    using KudosSlackbot.Data.QueryHandlers;
     using KudosSlackbot.Data.Services;
     using KudosSlackbot.Infrastructure.Settings.Slack;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -16,7 +13,6 @@
 
     public partial class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -56,12 +52,6 @@
             app.UseMvc();
 
             this.ConfigureSwagger(app);
-        }
-
-        public void ConfigureCQRS(IServiceCollection services)
-        {
-            // Mediator
-            services.AddMediatR(typeof(SlackApiTestQueryHandler).Assembly);
         }
     }
 }
