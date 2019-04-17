@@ -1,8 +1,8 @@
-﻿namespace KudosSlackbot.Controllers
+﻿namespace KudosSlackbot.Presentation.Api.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-
     using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
     [ApiController]

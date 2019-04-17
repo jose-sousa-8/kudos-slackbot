@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyName>KudosSlackbot</AssemblyName>
-    <RootNamespace>KudosSlackbot</RootNamespace>
+    <AssemblyName>KudosSlackbot.Presentation.Api</AssemblyName>
+    <RootNamespace>KudosSlackbot.Presentation.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
