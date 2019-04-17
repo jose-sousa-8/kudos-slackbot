@@ -1,5 +1,8 @@
 ﻿namespace KudosSlackbot.Presentation.Api
 {
+    using KudosSlackbot.Client.Http.Slack.Clients;
+    using KudosSlackbot.Infrastructure.Settings.Slack;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -8,6 +11,7 @@
 
     public partial class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -21,6 +25,10 @@
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             this.ConfigureSwagger(services);
+
+            var slackSettings = Configuration.GetSection("SlackSettings").Get<SlackSettings>();
+
+            services.AddTransient<ISlackTestClient>((factory) => new SlackTestClient(slackSettings.SlackApiEndpoint));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

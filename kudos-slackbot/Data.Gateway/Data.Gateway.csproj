@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>KudosSlackbot.Data.Gateway</AssemblyName>
+    <RootNamespace>KudosSlackbot.Data.Gateway</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client.Http.Slack\Client.Http.Slack.csproj" />
+  </ItemGroup>
+
+</Project>
