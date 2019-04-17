@@ -1,4 +1,4 @@
-﻿namespace KudosSlackbot
+﻿namespace KudosSlackbot.Presentation.Api
 {
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
