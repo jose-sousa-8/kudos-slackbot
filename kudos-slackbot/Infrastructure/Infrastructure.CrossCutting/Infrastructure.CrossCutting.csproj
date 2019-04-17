@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>KudosSlackbot.Infrastructure.CrossCutting</AssemblyName>
+    <RootNamespace>KudosSlackbot.Infrastructure.CrossCutting</RootNamespace>
   </PropertyGroup>
 
 </Project>
