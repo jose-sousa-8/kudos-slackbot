@@ -17,6 +17,10 @@
         /// <param name="services">The services.</param>
         public void ConfigureSwagger(IServiceCollection services)
         {
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            //});
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {

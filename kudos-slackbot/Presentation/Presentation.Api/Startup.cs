@@ -19,6 +19,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            this.ConfigureSwagger(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +37,8 @@
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            this.ConfigureSwagger(app);
         }
     }
 }
