@@ -2,17 +2,20 @@
 {
     using System;
     using System.Net.Http;
+    using System.Text;
     using System.Threading.Tasks;
 
-    public class SlackTestClient : SlackBaseClient, ISlackTestClient
+    using Newtonsoft.Json;
+
+    public class SlackApiTestClient : SlackBaseClient, ISlackApiTestClient
     {
         private const string apiTestMethod = "api.test";
 
-        public SlackTestClient(string slackApiEndpoint) : base(slackApiEndpoint)
+        public SlackApiTestClient(string slackApiEndpoint) : base(slackApiEndpoint)
         {
         }
 
-        public async Task<bool> TestApi()
+        public async Task<object> TestApi()
         {
             using (var httpClient = new HttpClient())
             {
@@ -20,7 +23,11 @@
                 {
                     var response = await httpClient.PostAsync(string.Format("{0}{1}", base.SlackApiUri, apiTestMethod), null);
 
-                    return response.StatusCode == System.Net.HttpStatusCode.OK;
+                    var byteArr = await response.Content.ReadAsByteArrayAsync();
+
+                    var json = Encoding.UTF8.GetString(byteArr);
+
+                    return JsonConvert.DeserializeObject<BaseSlackHttpResponse>(json);
                 }
                 catch (Exception ex)
                 {

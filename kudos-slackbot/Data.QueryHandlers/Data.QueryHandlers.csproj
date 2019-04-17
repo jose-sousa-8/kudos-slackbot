@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>KudosSlackbot.Data.QueryHandlers</AssemblyName>
+    <RootNamespace>KudosSlackbot.Data.QueryHandlers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Queries\Application.Queries.csproj" />
+    <ProjectReference Include="..\Data.Services\Data.Services.csproj" />
+  </ItemGroup>
+
+</Project>
