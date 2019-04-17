@@ -1,7 +1,12 @@
 ﻿namespace KudosSlackbot.Presentation.Api
 {
     using KudosSlackbot.Client.Http.Slack.Clients;
+    using KudosSlackbot.Data.Gateway.Slack;
+    using KudosSlackbot.Data.QueryHandlers;
+    using KudosSlackbot.Data.Services;
     using KudosSlackbot.Infrastructure.Settings.Slack;
+
+    using MediatR;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -28,7 +33,11 @@
 
             var slackSettings = Configuration.GetSection("SlackSettings").Get<SlackSettings>();
 
-            services.AddTransient<ISlackTestClient>((factory) => new SlackTestClient(slackSettings.SlackApiEndpoint));
+            services.AddTransient<ISlackApiTestClient>((factory) => new SlackApiTestClient(slackSettings.SlackApiEndpoint));
+            services.AddTransient<ISlackApiTestGateway, SlackApiTestGateway>();
+            services.AddTransient<ISlackApiTestService, SlackApiTestService>();
+
+            this.ConfigureCQRS(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +56,12 @@
             app.UseMvc();
 
             this.ConfigureSwagger(app);
+        }
+
+        public void ConfigureCQRS(IServiceCollection services)
+        {
+            // Mediator
+            services.AddMediatR(typeof(SlackApiTestQueryHandler).Assembly);
         }
     }
 }
