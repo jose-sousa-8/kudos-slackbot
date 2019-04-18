@@ -1,5 +1,6 @@
 ﻿namespace KudosSlackbot.Presentation.Api
 {
+    using KudosSlackbot.Data.CommandHandlers;
     using KudosSlackbot.Data.QueryHandlers;
 
     using MediatR;
@@ -11,7 +12,7 @@
         public void ConfigureCQRS(IServiceCollection services)
         {
             // Mediator
-            services.AddMediatR(typeof(SlackApiTestQueryHandler).Assembly);
+            services.AddMediatR(typeof(SlackApiTestQueryHandler).Assembly, typeof(CreateKudoCommandHandler).Assembly);
         }
     }
 }
