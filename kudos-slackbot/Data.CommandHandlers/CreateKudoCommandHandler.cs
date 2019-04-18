@@ -6,23 +6,27 @@
 
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
-    using KudosSlackbot.Data.Repository;
-
+    using KudosSlackbot.Data.Services;
+    using KudosSlackbot.Data.Services.Validators;
     using MediatR;
 
     public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, SlashCommandResponseDto>
     {
-        private readonly IKudoRepository kudoRepository;
+        private readonly IKudoService kudoService;
 
-        public CreateKudoCommandHandler(IKudoRepository kudoRepository)
+        public CreateKudoCommandHandler(IKudoService kudoService)
         {
-            this.kudoRepository = kudoRepository;
+            this.kudoService = kudoService;
         }
 
         public Task<SlashCommandResponseDto> Handle(CreateKudoCommand request, CancellationToken cancellationToken)
         {
             try
             {
+                var validator = KudoSlashCommandValidatorFactory.GetValidator(request);
+
+                validator.Validate();
+
                 var kudo = new Domain.Model.Kudo
                 {
                     ByUserId = request.UserId,
@@ -32,7 +36,7 @@
                     CommandText = request.Text
                 };
 
-                var id = kudoRepository.CreateKudo(kudo.Map<Data.Dbo.Kudo>());
+                var id = kudoService.CreateKudo(kudo);
 
                 return Task.FromResult(new SlashCommandResponseDto());
             }

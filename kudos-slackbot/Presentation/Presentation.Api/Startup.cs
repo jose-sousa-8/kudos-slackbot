@@ -41,6 +41,7 @@
 
             services.AddTransient<IKudoCommandFactory, KudoCommandFactory>();
             services.AddTransient<IKudoRepository, KudoRepository>();
+            services.AddTransient<IKudoService, KudoService>();
 
             this.ConfigureCQRS(services);
         }

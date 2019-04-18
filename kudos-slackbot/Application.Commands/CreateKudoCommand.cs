@@ -1,10 +1,6 @@
 ﻿namespace KudosSlackbot.Application.Commands
 {
-    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
-
-    using MediatR;
-
-    public class CreateKudoCommand : IRequest<SlashCommandResponseDto>
+    public class CreateKudoCommand : IKudoCommand
     {
         public string Text { get; set; }
 
