@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>KudosSlackbot.Data.CommandHandlers</AssemblyName>
-    <RootNamespace>KudosSlackbot.Data.CommandHandlers</RootNamespace>
+    <AssemblyName>KudosSlackbot.Application.Services</AssemblyName>
+    <RootNamespace>KudosSlackbot.Application.Services</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Commands\Application.Commands.csproj" />
-    <ProjectReference Include="..\Data.Repository\Data.Repository.csproj" />
-    <ProjectReference Include="..\Data.Services\Data.Services.csproj" />
+    <ProjectReference Include="..\Application.Dto\Application.Dto.csproj" />
   </ItemGroup>
 
 </Project>

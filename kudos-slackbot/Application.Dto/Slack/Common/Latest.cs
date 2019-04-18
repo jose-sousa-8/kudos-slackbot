@@ -12,7 +12,7 @@
 
         public string bot_id { get; set; }
 
-        public List<Attachment> attachments { get; set; }
+        public List<AttachmentDto> attachments { get; set; }
 
         public string type { get; set; }
 

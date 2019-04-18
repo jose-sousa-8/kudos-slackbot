@@ -6,4 +6,8 @@
     <RootNamespace>KudosSlackbot.Infrastructure.CrossCutting</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Bootstrapper\" />
+  </ItemGroup>
+
 </Project>

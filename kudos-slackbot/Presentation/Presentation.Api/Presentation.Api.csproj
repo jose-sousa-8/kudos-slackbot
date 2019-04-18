@@ -38,8 +38,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application.Queries\Application.Queries.csproj" />
+    <ProjectReference Include="..\..\Application.Services\Application.Services.csproj" />
     <ProjectReference Include="..\..\Client.Http.Slack\Client.Http.Slack.csproj" />
+    <ProjectReference Include="..\..\Data.CommandHandlers\Data.CommandHandlers.csproj" />
     <ProjectReference Include="..\..\Data.QueryHandlers\Data.QueryHandlers.csproj" />
+    <ProjectReference Include="..\..\Data.Repository\Data.Repository.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.CrossCutting\Infrastructure.CrossCutting.csproj" />
   </ItemGroup>
 
