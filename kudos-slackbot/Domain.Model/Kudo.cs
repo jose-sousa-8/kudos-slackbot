@@ -15,6 +15,7 @@
         public string ByUsername { get; set; }
 
         public string Text { get; set; }
+
         public string CommandText { get; set; }
 
         public string ChannelId { get; set; }

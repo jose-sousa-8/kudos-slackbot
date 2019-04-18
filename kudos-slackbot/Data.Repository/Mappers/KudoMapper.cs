@@ -16,7 +16,8 @@
                 ChannelName = source.ChannelName,
                 UserId = source.UserId,
                 Username = source.Username,
-                Text = source.Text
+                Text = source.Text,
+                CommandText = source.CommandText
             };
         };
 
