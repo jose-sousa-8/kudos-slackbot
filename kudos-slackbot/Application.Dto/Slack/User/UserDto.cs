@@ -1,6 +1,6 @@
 ﻿namespace KudosSlackbot.Application.Dto.Slack.User
 {
-    class UserDto
+    public class UserDto
     {
         public bool ok { get; set; }
 
