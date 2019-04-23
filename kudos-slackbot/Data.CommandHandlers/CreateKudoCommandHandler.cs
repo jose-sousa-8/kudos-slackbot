@@ -8,6 +8,7 @@
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Services;
     using KudosSlackbot.Data.Services.Validators;
+
     using MediatR;
 
     public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, SlashCommandResponseDto>
@@ -23,9 +24,7 @@
         {
             try
             {
-                var validator = KudoSlashCommandValidatorFactory.GetValidator(request);
-
-                validator.Validate();
+                KudoSlashCommandValidatorFactory<CreateKudoCommand>.GetValidator().Validate(request);
 
                 var kudo = new Domain.Model.Kudo
                 {

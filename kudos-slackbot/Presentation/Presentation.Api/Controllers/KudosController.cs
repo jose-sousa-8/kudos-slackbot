@@ -5,6 +5,7 @@
 
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Application.Services;
+    using KudosSlackbot.Data.Services.Validators;
 
     using MediatR;
 
@@ -33,13 +34,9 @@
             {
                 var command = kudoCommandFactory.CreateKudoCommand(request);
 
-                var response = await Mediator.Send(command).ConfigureAwait(false);
+                var response = await Mediator.Send(command);
 
                 return Ok(response);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
             catch (JsonReaderException)
             {
@@ -47,6 +44,11 @@
             }
             catch (Exception ex)
             {
+                if (ex is ArgumentException || ex is KudoSlashCommandValidationException)
+                {
+                    return BadRequest(ex.Message);
+                }
+
                 throw ex;
             }
         }

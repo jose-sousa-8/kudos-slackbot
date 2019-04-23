@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace KudosSlackbot.Domain.Services
 {
@@ -18,7 +17,7 @@ namespace KudosSlackbot.Domain.Services
 
             foreach (var error in this.Errors)
             {
-                errorMsg += string.Format($"{error}{Environment.NewLine}");
+                errorMsg += string.Format($"{error}; ");
             }
 
             return errorMsg;

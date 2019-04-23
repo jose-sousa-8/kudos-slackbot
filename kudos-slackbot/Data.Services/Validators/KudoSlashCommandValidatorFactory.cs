@@ -1,12 +1,11 @@
-﻿
-namespace KudosSlackbot.Data.Services.Validators
+﻿namespace KudosSlackbot.Data.Services.Validators
 {
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Domain.Services;
 
     public class KudoSlashCommandValidatorFactory<T> : IKudoSlashCommandValidatorFactory where T : IKudoCommand
     {
-        public static IKudoSlashCommandValidator<T> GetValidator(T command)
+        public static IKudoSlashCommandValidator<T> GetValidator()
         {
             var commandType = typeof(T);
 
