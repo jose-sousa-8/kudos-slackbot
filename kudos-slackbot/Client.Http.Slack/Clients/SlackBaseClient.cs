@@ -6,9 +6,13 @@
     {
         protected Uri SlackApiUri { get; set; }
 
-        public SlackBaseClient(string slackApiEndpoint)
+        public SlackBaseClient(string slackApiEndpoint) : this(slackApiEndpoint, string.Empty)
         {
-            this.SlackApiUri = new Uri(slackApiEndpoint);
+        }
+
+        public SlackBaseClient(string slackApiEndpoint, string slackMethod)
+        {
+            this.SlackApiUri = new Uri(string.Format("{0}{1}", slackApiEndpoint, slackMethod));
         }
     }
 }
