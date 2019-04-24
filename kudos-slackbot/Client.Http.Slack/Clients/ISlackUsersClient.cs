@@ -5,5 +5,7 @@
     public interface ISlackUsersClient
     {
         Task<UserInfoSlackHttpResponse> GetUserInfo(string userId, bool includeLocal = false);
+
+        Task<UsersListSlackHttpResponse> GetUserList();
     }
 }
