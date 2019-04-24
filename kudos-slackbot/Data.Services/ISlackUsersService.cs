@@ -1,11 +1,10 @@
-﻿namespace KudosSlackbot.Data.Gateway.Slack
+﻿namespace KudosSlackbot.Data.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using KudosSlackbot.Application.Dto.Slack.User;
-
-    public interface ISlackUsersGateway
+    public interface ISlackUsersService
     {
         Task<UserDto> GetUserInfo(string userId, bool includeLocal = false);
 

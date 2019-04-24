@@ -35,9 +35,14 @@
 
             var slackSettings = Configuration.GetSection("SlackSettings").Get<SlackSettings>();
 
-            services.AddTransient<ISlackApiTestClient>((factory) => new SlackApiTestClient(slackSettings.SlackApiEndpoint));
+            services.AddTransient<ISlackApiTestClient>((factory) => new SlackApiTestClient(slackSettings.SlackApiEndpoint, slackSettings.SlackCredentials.OAuthToken));
+            services.AddTransient<ISlackUsersClient>((factory) => new SlackUsersClient(slackSettings.SlackApiEndpoint, slackSettings.SlackCredentials.OAuthToken));
+
             services.AddTransient<ISlackApiTestGateway, SlackApiTestGateway>();
             services.AddTransient<ISlackApiTestService, SlackApiTestService>();
+
+            services.AddTransient<ISlackUsersGateway, SlackUsersGateway>();
+            services.AddTransient<ISlackUsersService, SlackUsersService>();
 
             services.AddTransient<IKudoCommandFactory, KudoCommandFactory>();
             services.AddTransient<IKudoRepository, KudoRepository>();

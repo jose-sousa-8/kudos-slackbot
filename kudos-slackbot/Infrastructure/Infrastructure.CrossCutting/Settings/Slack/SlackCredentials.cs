@@ -11,5 +11,7 @@
         public string SigningSecret { get; set; }
 
         public string VerificationToken { get; set; }
+
+        public string OAuthToken { get; set; }
     }
 }
