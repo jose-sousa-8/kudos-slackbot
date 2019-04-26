@@ -23,7 +23,7 @@
                 {
                     var userInfoUri = new Uri(string.Format("{0}{1}", this.SlackApiEndpoint, ApiTestMethod));
 
-                    var request = base.GenerateRequest(userInfoUri, HttpMethod.Post);
+                    var request = base.GenerateBasicRequest(userInfoUri, HttpMethod.Post);
 
                     var response = await httpClient.SendAsync(request);
 

@@ -32,7 +32,7 @@
 
                     var userInfoUri = new Uri(string.Format("{0}{1}", this.SlackApiEndpoint, UserInfoMethod));
 
-                    var request = base.GenerateRequest(userInfoUri, HttpMethod.Get, queryParameters);
+                    var request = base.GenerateAuthenticatedRequest(userInfoUri, HttpMethod.Get, queryParameters);
 
                     var response = await httpClient.SendAsync(request);
 
@@ -52,7 +52,7 @@
                 try
                 {
                     var userListUri = new Uri(string.Format("{0}{1}", this.SlackApiEndpoint, UserListMethod));
-                    var httpRequest = base.GenerateRequest(userListUri, HttpMethod.Get);
+                    var httpRequest = base.GenerateAuthenticatedRequest(userListUri, HttpMethod.Get);
 
                     var response = await httpClient.SendAsync(httpRequest);
 

@@ -31,7 +31,7 @@
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        protected virtual HttpRequestMessage GenerateRequest(Uri uri, HttpMethod method, IDictionary<string, string> queryParameters = null)
+        protected virtual HttpRequestMessage GenerateAuthenticatedRequest(Uri uri, HttpMethod method, IDictionary<string, string> queryParameters = null)
         {
             var httpRequestMessage = new HttpRequestMessage();
 
@@ -47,6 +47,19 @@
             httpRequestMessage = new HttpRequestMessage(method, uriString);
 
             return httpRequestMessage;
+        }
+
+
+        protected virtual HttpRequestMessage GenerateBasicRequest(Uri uri, HttpMethod method, IDictionary<string, string> queryParameters = null)
+        {
+            string uriString = uri.ToString();
+
+            if (method == HttpMethod.Get && queryParameters != null)
+            {
+                uriString = QueryHelpers.AddQueryString(uri.ToString(), queryParameters);
+            }
+
+            return new HttpRequestMessage(method, uriString);
         }
     }
 }
