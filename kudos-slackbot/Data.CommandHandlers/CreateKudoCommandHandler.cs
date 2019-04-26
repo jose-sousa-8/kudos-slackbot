@@ -35,9 +35,7 @@
                     CommandText = request.Text
                 };
 
-                var id = kudoService.CreateKudo(kudo);
-
-                return Task.FromResult(new SlashCommandResponseDto());
+                return Task.FromResult(kudoService.CreateKudo(kudo));
             }
             catch (Exception ex)
             {

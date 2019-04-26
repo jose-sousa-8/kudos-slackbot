@@ -11,8 +11,6 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    using Newtonsoft.Json;
-
     [Route("api/[controller]")]
     [ApiController]
     public class KudosController : BaseController
@@ -38,15 +36,11 @@
 
                 return Ok(response);
             }
-            catch (JsonReaderException)
-            {
-                return BadRequest("Invalid form format.");
-            }
             catch (Exception ex)
             {
                 if (ex is ArgumentException || ex is KudoSlashCommandValidationException)
                 {
-                    return BadRequest(ex.Message);
+                    return Ok(ex.Message);
                 }
 
                 throw ex;

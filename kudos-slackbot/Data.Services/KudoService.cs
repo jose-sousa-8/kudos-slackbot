@@ -1,7 +1,6 @@
 ﻿namespace KudosSlackbot.Data.Services
 {
-    using System;
-
+    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Repository;
     using KudosSlackbot.Domain.Model;
 
@@ -14,9 +13,19 @@
             this.kudoRepository = kudoRepository;
         }
 
-        public Guid CreateKudo(Kudo kudo)
+        public SlashCommandResponseDto CreateKudo(Kudo kudo)
         {
-            return kudoRepository.CreateKudo(kudo.Map<Dbo.Kudo>());
+            kudoRepository.CreateKudo(kudo.Map<Dbo.Kudo>());
+
+            return new SlashCommandResponseDto
+            {
+                Attachments = new System.Collections.Generic.List<Application.Dto.Slack.Channel.AttachmentDto>
+                {
+                    new Application.Dto.Slack.Channel.AttachmentDto{
+                        text = $"Kudaste um amigo! És um guerreiro de Deus!"
+                    }
+                }
+            };
         }
     }
 }
