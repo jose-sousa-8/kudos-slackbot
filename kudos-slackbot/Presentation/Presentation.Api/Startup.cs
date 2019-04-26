@@ -24,10 +24,11 @@
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<KudoContext>(options => options.UseSqlServer("Server=localhost;Database=kudos-slackbot;Integrated Security=SSPI;"));
+            services.AddDbContext<KudoContext>(options => options.UseSqlServer(Configuration.GetSection("SQLConnectionString").Get<string>()));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
