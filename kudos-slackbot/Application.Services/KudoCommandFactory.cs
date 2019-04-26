@@ -32,12 +32,12 @@
                             Text = slashCommandDto.text
                         };
                     default:
-                        throw new ArgumentException("Invalid kudo command");
+                        throw new ArgumentException("Use => /kudos add <user> <message>");
                 }
             }
             else
             {
-                throw new ArgumentException("Invalid kudo command");
+                throw new ArgumentException("Use => /kudos add <user> <message>");
             }
         }
     }

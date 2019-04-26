@@ -22,7 +22,7 @@
                 Attachments = new System.Collections.Generic.List<Application.Dto.Slack.Channel.AttachmentDto>
                 {
                     new Application.Dto.Slack.Channel.AttachmentDto{
-                        text = $"Kudaste um amigo! És um guerreiro de Deus!"
+                        text = $"Kudaste um amigo! És um guerreiro de Deus! :jesus:"
                     }
                 }
             };
