@@ -6,6 +6,7 @@
         Replace,
         Delete,
         List,
-        User
+        User,
+        Help
     }
 }

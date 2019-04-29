@@ -18,27 +18,32 @@
 
             var actionString = slashCommandDto.text.Split(' ')[0];
 
-            if (Enum.TryParse<EKudoCommandAction>(actionString, true, out var commandAction))
+            var commandAction = Enum.Parse(typeof(EKudoCommandAction), actionString, ignoreCase: true);
+            IKudoCommand kudoCommand;
+            switch (commandAction)
             {
-                switch (commandAction)
-                {
-                    case EKudoCommandAction.Add:
-                        return new CreateKudoCommand
-                        {
-                            UserId = slashCommandDto.user_id,
-                            Username = slashCommandDto.user_name,
-                            ChannelId = slashCommandDto.channel_id,
-                            ChannelName = slashCommandDto.channel_name,
-                            Text = slashCommandDto.text
-                        };
-                    default:
-                        throw new ArgumentException("Use => /kudos add <user> <message>");
-                }
+                case EKudoCommandAction.Add:
+                    kudoCommand = new CreateKudoCommand();
+                    this.FillBaseKudoCommandProperties(kudoCommand, slashCommandDto);
+                    break;
+                case EKudoCommandAction.Help:
+                    kudoCommand = new HelpKudoCommand();
+                    this.FillBaseKudoCommandProperties(kudoCommand, slashCommandDto);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid kudo command. Use </kudos help> for options");
             }
-            else
-            {
-                throw new ArgumentException("Use => /kudos add <user> <message>");
-            }
+
+            return kudoCommand;
+        }
+
+        private void FillBaseKudoCommandProperties(IKudoCommand kudoCommand, SlashCommandDto slashCommandDto)
+        {
+            kudoCommand.UserId = slashCommandDto.user_id;
+            kudoCommand.Username = slashCommandDto.user_name;
+            kudoCommand.ChannelId = slashCommandDto.channel_id;
+            kudoCommand.ChannelName = slashCommandDto.channel_name;
+            kudoCommand.Text = slashCommandDto.text;
         }
     }
 }

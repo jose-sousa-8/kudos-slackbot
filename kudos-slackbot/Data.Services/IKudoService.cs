@@ -6,5 +6,7 @@
     public interface IKudoService
     {
         SlashCommandResponseDto CreateKudo(Kudo kudo);
+
+        SlashCommandResponseDto BuildHelpResponse();
     }
 }
