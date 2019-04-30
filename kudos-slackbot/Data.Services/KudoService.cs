@@ -40,11 +40,7 @@
                 {
                     new AttachmentDto
                     {
-                        text = $@"
-                            *Available commands:{Environment.NewLine}*
-                            /kudos <add> <user-id> <text>{Environment.NewLine}
-                            /kudos <help>
-                        "
+                        text = $@"*Available commands:*{Environment.NewLine}/kudos <add> <user-id> <text>{Environment.NewLine}/kudos <help>"
                     }
                 }
             };
