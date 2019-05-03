@@ -1,6 +1,7 @@
 ﻿namespace KudosSlackbot.Data.Services.Validators
 {
     using KudosSlackbot.Application.Commands;
+    using KudosSlackbot.Application.Queries;
     using KudosSlackbot.Domain.Services;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
@@ -13,6 +14,10 @@
             if (commandType == typeof(CreateKudoCommand))
             {
                 return (IKudoSlashCommandValidator<T>)new KudoAddCommandValidator();
+            }
+            else if (commandType == typeof(ListKudosQuery))
+            {
+                return (IKudoSlashCommandValidator<T>)new ListKudosQueryValidator();
             }
 
             throw new System.Exception("Uknown Kudo Command.");

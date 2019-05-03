@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     using KudosSlackbot.Application.Dto.Slack.Channel;
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Repository;
+    using KudosSlackbot.Data.Services.Extensions;
     using KudosSlackbot.Domain.Model;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
@@ -20,7 +23,9 @@
 
         public ISlashCommandResponse CreateKudo(Kudo kudo)
         {
-            kudoRepository.CreateKudo(kudo.Map<Dbo.Kudo>());
+            kudo.Text = kudo.GetAddKudoMessage();
+
+            kudoRepository.Create(kudo.Map<Dbo.Kudo>());
 
             return new SlashCommandResponseDto
             {
@@ -42,6 +47,55 @@
                     new AttachmentDto
                     {
                         text = $@"*Available commands:*{Environment.NewLine}/kudos <add> <user-id> <text>{Environment.NewLine}/kudos <help>"
+                    }
+                }
+            };
+        }
+
+        public ISlashCommandResponse GetNKudosByUserId(Kudo kudo)
+        {
+            var numberOfKudos = kudo.CommandText.Split(' ')[1];
+
+            if (numberOfKudos == "*")
+            {
+                return this.GetAllUserKudos(kudo.UserId);
+            }
+
+            var kudos = this.kudoRepository.GetNByUserId(kudo.UserId, Convert.ToInt32(numberOfKudos)).Select(x => x.Map<Kudo>());
+
+            return this.BuildSlashResponseFromKudoList(kudos);
+        }
+
+        public ISlashCommandResponse GetAllUserKudos(string userId)
+        {
+            var kudos = this.kudoRepository.GetAllByUserId(userId).Select(x => x.Map<Kudo>());
+
+            return this.BuildSlashResponseFromKudoList(kudos);
+        }
+
+        private ISlashCommandResponse BuildSlashResponseFromKudoList(IEnumerable<Kudo> kudos)
+        {
+            var textBuild = new StringBuilder();
+
+            var lastIndex = kudos.Count() - 1;
+
+            for (int i = 0; i < kudos.Count(); i++)
+            {
+
+                textBuild.Append($"{kudos.ElementAt(i).ByUsername} - {kudos.ElementAt(i).Text}");
+                if (i != lastIndex)
+                {
+                    textBuild.Append(Environment.NewLine);
+                }
+            }
+
+            return new SlashCommandResponseDto
+            {
+                Attachments = new List<AttachmentDto>
+                {
+                    new AttachmentDto
+                    {
+                        text = textBuild.ToString()
                     }
                 }
             };

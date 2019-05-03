@@ -1,5 +1,6 @@
 ﻿namespace KudosSlackbot.Data.Services
 {
+
     using KudosSlackbot.Domain.Model;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
@@ -8,5 +9,9 @@
         ISlashCommandResponse CreateKudo(Kudo kudo);
 
         ISlashCommandResponse BuildHelpResponse();
+
+        ISlashCommandResponse GetNKudosByUserId(Kudo kudo);
+
+        ISlashCommandResponse GetAllUserKudos(string userId);
     }
 }

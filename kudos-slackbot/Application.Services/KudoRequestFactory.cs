@@ -34,6 +34,12 @@
                     };
                 case EKudoCommandAction.Help:
                     return new HelpKudoQuery();
+                case EKudoCommandAction.List:
+                    return new ListKudosQuery
+                    {
+                        UserId = slashCommandDto.user_id,
+                        Text = slashCommandDto.text
+                    };
                 default:
                     throw new ArgumentException("Invalid kudo command. Use </kudos help> for options");
             }
