@@ -7,6 +7,7 @@
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Repository;
     using KudosSlackbot.Domain.Model;
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     public class KudoService : IKudoService
     {
@@ -17,7 +18,7 @@
             this.kudoRepository = kudoRepository;
         }
 
-        public SlashCommandResponseDto CreateKudo(Kudo kudo)
+        public ISlashCommandResponse CreateKudo(Kudo kudo)
         {
             kudoRepository.CreateKudo(kudo.Map<Dbo.Kudo>());
 
@@ -32,7 +33,7 @@
             };
         }
 
-        public SlashCommandResponseDto BuildHelpResponse()
+        public ISlashCommandResponse BuildHelpResponse()
         {
             return new SlashCommandResponseDto
             {

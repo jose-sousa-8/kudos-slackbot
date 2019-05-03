@@ -3,8 +3,9 @@
     using System.Collections.Generic;
 
     using KudosSlackbot.Application.Dto.Slack.Channel;
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
-    public class SlashCommandResponseDto
+    public class SlashCommandResponseDto : ISlashCommandResponse
     {
         public List<AttachmentDto> Attachments { get; set; }
     }

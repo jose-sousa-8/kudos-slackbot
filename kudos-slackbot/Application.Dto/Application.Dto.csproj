@@ -6,4 +6,8 @@
     <RootNamespace>KudosSlackbot.Application.Dto</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.CrossCutting\Infrastructure.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

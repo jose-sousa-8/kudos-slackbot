@@ -1,6 +1,8 @@
 ﻿namespace KudosSlackbot.Application.Commands
 {
-    public abstract class BaseKudoCommand : IKudoCommand
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
+
+    public abstract class BaseKudoCommand : IKudoRequest
     {
         public string Text { get; set; }
 

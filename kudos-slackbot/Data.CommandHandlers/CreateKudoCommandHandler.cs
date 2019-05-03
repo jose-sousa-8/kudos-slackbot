@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
 
     using KudosSlackbot.Application.Commands;
-    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Services;
     using KudosSlackbot.Data.Services.Validators;
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     using MediatR;
 
-    public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, SlashCommandResponseDto>
+    public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, ISlashCommandResponse>
     {
         private readonly IKudoService kudoService;
 
@@ -20,7 +20,7 @@
             this.kudoService = kudoService;
         }
 
-        public Task<SlashCommandResponseDto> Handle(CreateKudoCommand request, CancellationToken cancellationToken)
+        public Task<ISlashCommandResponse> Handle(CreateKudoCommand request, CancellationToken cancellationToken)
         {
             try
             {

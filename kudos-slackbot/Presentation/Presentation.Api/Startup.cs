@@ -54,7 +54,7 @@
             services.AddTransient<ISlackUsersGateway, SlackUsersGateway>();
             services.AddTransient<ISlackUsersService, SlackUsersService>();
 
-            services.AddTransient<IKudoCommandFactory, KudoCommandFactory>();
+            services.AddTransient<IKudoRequestFactory, KudoRequestFactory>();
             services.AddTransient<IKudoRepository, KudoRepository>();
             services.AddTransient<IKudoService, KudoService>();
 

@@ -1,12 +1,12 @@
 ﻿namespace KudosSlackbot.Data.Services
 {
-    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Domain.Model;
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     public interface IKudoService
     {
-        SlashCommandResponseDto CreateKudo(Kudo kudo);
+        ISlashCommandResponse CreateKudo(Kudo kudo);
 
-        SlashCommandResponseDto BuildHelpResponse();
+        ISlashCommandResponse BuildHelpResponse();
     }
 }

@@ -2,8 +2,9 @@
 {
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Domain.Services;
+    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
-    public class KudoSlashCommandValidatorFactory<T> : IKudoSlashCommandValidatorFactory where T : IKudoCommand
+    public class KudoSlashCommandValidatorFactory<T> : IKudoSlashCommandValidatorFactory where T : IKudoRequest
     {
         public static IKudoSlashCommandValidator<T> GetValidator()
         {
