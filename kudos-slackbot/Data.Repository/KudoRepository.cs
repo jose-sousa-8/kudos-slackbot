@@ -90,5 +90,11 @@
         {
             return this.context.Kudos.AsNoTracking().Where(k => k.UserId == userId).OrderByDescending(x => x.CreateAt);
         }
+
+        public void Delete(Guid kudoId)
+        {
+            this.context.Kudos.Remove(new Kudo { Id = kudoId });
+            this.context.SaveChanges();
+        }
     }
 }

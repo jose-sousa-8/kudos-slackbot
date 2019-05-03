@@ -46,7 +46,7 @@
                 {
                     new AttachmentDto
                     {
-                        text = $@"*Available commands:*{Environment.NewLine}/kudos <add> <user-id> <text>{Environment.NewLine}/kudos <help>{Environment.NewLine}/kudos list <*/n>"
+                        text = $@"*Available commands:*{Environment.NewLine}/kudos <add> <user-id> <text>{Environment.NewLine}/kudos <help>{Environment.NewLine}/kudos list <*/n>{Environment.NewLine}/kudos delete <kudo-id>"
                     }
                 }
             };
@@ -96,6 +96,22 @@
                     new AttachmentDto
                     {
                         text = textBuild.ToString()
+                    }
+                }
+            };
+        }
+
+        public ISlashCommandResponse DeleteKudo(Guid kudoId)
+        {
+            this.kudoRepository.Delete(kudoId);
+
+            return new SlashCommandResponseDto
+            {
+                Attachments = new List<AttachmentDto>
+                {
+                    new AttachmentDto
+                    {
+                        text = "You deleted a kudo! You bastard! :angry:"
                     }
                 }
             };

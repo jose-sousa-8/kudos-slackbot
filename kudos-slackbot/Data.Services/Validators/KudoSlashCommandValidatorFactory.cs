@@ -19,6 +19,10 @@
             {
                 return (IKudoSlashCommandValidator<T>)new ListKudosQueryValidator();
             }
+            else if (commandType == typeof(DeleteKudoCommand))
+            {
+                return (IKudoSlashCommandValidator<T>)new DeleteKudoCommandValidator();
+            }
 
             throw new System.Exception("Uknown Kudo Command.");
         }

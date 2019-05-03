@@ -28,5 +28,7 @@
         IEnumerable<Kudo> GetNByUserId(string userId, int n);
 
         IEnumerable<Kudo> GetAllByUserId(string userId);
+
+        void Delete(Guid kudoId);
     }
 }

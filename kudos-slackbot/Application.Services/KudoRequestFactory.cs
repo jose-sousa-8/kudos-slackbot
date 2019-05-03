@@ -40,6 +40,11 @@
                         UserId = slashCommandDto.user_id,
                         Text = slashCommandDto.text
                     };
+                case EKudoCommandAction.Delete:
+                    return new DeleteKudoCommand
+                    {
+                        CommandText = slashCommandDto.text
+                    };
                 default:
                     throw new ArgumentException("Invalid kudo command. Use </kudos help> for options");
             }
