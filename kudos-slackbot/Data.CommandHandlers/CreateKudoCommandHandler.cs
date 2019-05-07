@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
 
     using KudosSlackbot.Application.Commands;
+    using KudosSlackbot.Application.Services.Extensions;
     using KudosSlackbot.Data.Services;
     using KudosSlackbot.Data.Services.Validators;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
@@ -28,6 +29,8 @@
 
                 var kudo = new Domain.Model.Kudo
                 {
+                    UserId = request.GetUserId(),
+                    Username = request.GetUsername(),
                     ByUserId = request.UserId,
                     ByUsername = request.Username,
                     ChannelId = request.ChannelId,
