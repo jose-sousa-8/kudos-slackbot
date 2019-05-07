@@ -9,8 +9,9 @@
     using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Repository;
     using KudosSlackbot.Data.Services.Extensions;
-    using KudosSlackbot.Domain.Model;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
+
+    using Kudo = Domain.Model.Kudo;
 
     public class KudoService : IKudoService
     {
@@ -150,6 +151,30 @@
                     new AttachmentDto
                     {
                         text = "You changed them kudo! You did better this time? :thinking_face:"
+                    }
+                }
+            };
+        }
+
+        public ISlashCommandResponse GetTopUsers(string numberOfUsers)
+        {
+            if (numberOfUsers.Equals("*"))
+            {
+                return this.BuildTopUserListResponse(this.kudoRepository.GetTopUsers());
+            }
+
+            return this.BuildTopUserListResponse(this.kudoRepository.GetTopUsers(int.Parse(numberOfUsers)));
+        }
+
+        private ISlashCommandResponse BuildTopUserListResponse(IEnumerable<string> users)
+        {
+            return new SlashCommandResponseDto
+            {
+                Attachments = new List<AttachmentDto>
+                {
+                    new AttachmentDto
+                    {
+                        text = users.Aggregate((i, j) => i + Environment.NewLine + j)
                     }
                 }
             };

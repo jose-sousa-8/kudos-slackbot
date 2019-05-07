@@ -7,6 +7,6 @@
 
     public class SlashCommandResponseDto : ISlashCommandResponse
     {
-        public List<AttachmentDto> Attachments { get; set; }
+        public IEnumerable<AttachmentDto> Attachments { get; set; }
     }
 }

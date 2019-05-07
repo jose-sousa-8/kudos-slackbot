@@ -7,6 +7,7 @@
         Delete,
         List,
         User,
-        Help
+        Help,
+        Top
     }
 }

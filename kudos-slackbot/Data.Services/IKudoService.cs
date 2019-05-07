@@ -18,5 +18,7 @@
         ISlashCommandResponse ReplaceKudo(Kudo kudo);
 
         ISlashCommandResponse DeleteKudo(Guid kudoId);
+
+        ISlashCommandResponse GetTopUsers(string numberOfUsers);
     }
 }

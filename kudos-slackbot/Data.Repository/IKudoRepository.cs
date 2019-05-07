@@ -32,5 +32,9 @@
         void Delete(Guid kudoId);
 
         void UpdateText(Kudo kudo);
+
+
+        // TODO Shit solution with the nullable int but will work for now
+        IEnumerable<string> GetTopUsers(int? n = null);
     }
 }

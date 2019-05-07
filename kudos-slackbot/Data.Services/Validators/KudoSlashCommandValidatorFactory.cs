@@ -32,6 +32,11 @@
             {
                 return (IKudoSlashCommandValidator<T>)new ListUserKudosQueryValidator();
             }
+            else if (commandType == typeof(ListTopUsersQuery))
+            {
+                return (IKudoSlashCommandValidator<T>)new ListTopUsersQueryValidator();
+            }
+
 
             throw new System.Exception("Uknown Kudo Command.");
         }

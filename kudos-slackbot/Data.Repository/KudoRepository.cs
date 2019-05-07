@@ -105,5 +105,20 @@
             this.context.Kudos.Remove(new Kudo { Id = kudoId });
             this.context.SaveChanges();
         }
+
+        public IEnumerable<string> GetTopUsers(int? n = null)
+        {
+            // TODO move this logic to the service layer
+            var topUsers = from kudo in this.context.Kudos
+                           group kudo by kudo.UserId into grouped
+                           orderby grouped.Count() descending
+                           select $"{grouped.First().Username} - {grouped.Count()}";
+            if (n == null)
+            {
+                return topUsers;
+            }
+
+            return topUsers.Take(n.GetValueOrDefault(0));
+        }
     }
 }
