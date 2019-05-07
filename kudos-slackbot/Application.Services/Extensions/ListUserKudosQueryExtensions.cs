@@ -17,7 +17,7 @@
 
         private static string TrimUserInfo(this string userInfo)
         {
-            return userInfo.Trim(new char[] { '<', '>' });
+            return userInfo.Trim(new char[] { '<', '>', '@' });
         }
     }
 }
