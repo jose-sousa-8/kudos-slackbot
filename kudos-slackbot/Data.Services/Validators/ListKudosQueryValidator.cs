@@ -7,7 +7,7 @@
     using KudosSlackbot.Application.Queries;
     using KudosSlackbot.Domain.Services;
 
-    public class ListKudosQueryValidator : KudoSlashCommandTextValidator<ListKudosQuery>
+    public class ListKudosQueryValidator : KudoSlashCommandValidator<ListKudosQuery>
     {
         private const string InvalidQueryText = "Invalid list command. It should be in format /kudo list <n> where n is an integer or * for all kudos.";
 

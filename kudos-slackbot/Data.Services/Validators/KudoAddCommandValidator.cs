@@ -7,7 +7,7 @@
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Domain.Services;
 
-    public class KudoAddCommandValidator : KudoSlashCommandTextValidator<CreateKudoCommand>
+    public class KudoAddCommandValidator : KudoSlashCommandValidator<CreateKudoCommand>
     {
         public override IValidationResult Validate(CreateKudoCommand kudoCommand)
         {

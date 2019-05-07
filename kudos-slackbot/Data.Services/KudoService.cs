@@ -47,11 +47,12 @@
                     new AttachmentDto
                     {
                         text = $@"*Available commands:*{Environment.NewLine}
-                                   /kudo <add> <user-id> <text>{Environment.NewLine}
-                                   /kudo <help>{Environment.NewLine}
-                                   /kudo list <*/n>{Environment.NewLine}
-                                   /kudo delete <kudo-id>{Environment.NewLine}
-                                   /kudo replace <kudo-id> <new-text>"
+/kudo <add> <user-id> <text>{Environment.NewLine}
+/kudo <help>{Environment.NewLine}
+/kudo list <*/n>{Environment.NewLine}
+/kudo delete <kudo-id>{Environment.NewLine}
+/kudo replace <kudo-id> <new-text>{Environment.NewLine}
+/kudo user <user-id>"
                     }
                 }
             };
@@ -88,7 +89,7 @@
                     {
                         new AttachmentDto
                         {
-                            text = "You don't have a single kudo. You pretty much suck! :wink:"
+                            text = "Not even a single kudo. What a shame! :worried:"
                         }
                     }
                 };

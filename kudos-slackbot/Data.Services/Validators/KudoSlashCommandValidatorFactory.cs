@@ -7,6 +7,7 @@
 
     public class KudoSlashCommandValidatorFactory<T> : IKudoSlashCommandValidatorFactory where T : IKudoRequest
     {
+        // TODO Do this better
         public static IKudoSlashCommandValidator<T> GetValidator()
         {
             var commandType = typeof(T);
@@ -26,6 +27,10 @@
             else if (commandType == typeof(ReplaceKudoCommand))
             {
                 return (IKudoSlashCommandValidator<T>)new ReplaceKudoCommandValidator();
+            }
+            else if (commandType == typeof(ListUserKudosQuery))
+            {
+                return (IKudoSlashCommandValidator<T>)new ListUserKudosQueryValidator();
             }
 
             throw new System.Exception("Uknown Kudo Command.");

@@ -50,6 +50,11 @@
                     {
                         CommandText = slashCommandDto.text
                     };
+                case EKudoCommandAction.User:
+                    return new ListUserKudosQuery
+                    {
+                        Text = slashCommandDto.text
+                    };
                 default:
                     throw new ArgumentException("Invalid kudo command. Use </kudo help> for options");
             }

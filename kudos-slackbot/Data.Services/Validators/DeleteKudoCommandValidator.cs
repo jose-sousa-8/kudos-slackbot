@@ -7,7 +7,7 @@
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Domain.Services;
 
-    public class DeleteKudoCommandValidator : KudoSlashCommandTextValidator<DeleteKudoCommand>
+    public class DeleteKudoCommandValidator : KudoSlashCommandValidator<DeleteKudoCommand>
     {
         public override IValidationResult Validate(DeleteKudoCommand kudoCommand)
         {
