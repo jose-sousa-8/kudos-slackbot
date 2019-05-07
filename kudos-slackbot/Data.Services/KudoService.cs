@@ -182,16 +182,13 @@
                 };
             }
 
-            var kingText = $":crown: {users.ElementAt(0)}";
-            users.ToList().RemoveAt(0);
-
             return new SlashCommandResponseDto
             {
                 Attachments = new List<AttachmentDto>
                 {
                     new AttachmentDto
                     {
-                        text =  kingText += users.Aggregate((i, j) => i + Environment.NewLine + j)
+                        text =  users.Aggregate((i, j) => i + Environment.NewLine + j)
                     }
                 }
             };
