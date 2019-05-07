@@ -80,6 +80,20 @@
 
         private ISlashCommandResponse BuildSlashResponseFromKudoList(IEnumerable<Kudo> kudos)
         {
+            if (!kudos.Any())
+            {
+                return new SlashCommandResponseDto
+                {
+                    Attachments = new List<AttachmentDto>
+                    {
+                        new AttachmentDto
+                        {
+                            text = "You don't have a single kudo. You pretty much suck! :wink:"
+                        }
+                    }
+                };
+            }
+
             var textBuild = new StringBuilder();
 
             var lastIndex = kudos.Count() - 1;
