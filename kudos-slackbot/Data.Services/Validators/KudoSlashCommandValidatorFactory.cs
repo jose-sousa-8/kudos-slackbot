@@ -23,6 +23,10 @@
             {
                 return (IKudoSlashCommandValidator<T>)new DeleteKudoCommandValidator();
             }
+            else if (commandType == typeof(ReplaceKudoCommand))
+            {
+                return (IKudoSlashCommandValidator<T>)new ReplaceKudoCommandValidator();
+            }
 
             throw new System.Exception("Uknown Kudo Command.");
         }

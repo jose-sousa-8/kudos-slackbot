@@ -23,7 +23,7 @@
 
         public ISlashCommandResponse CreateKudo(Kudo kudo)
         {
-            kudo.Text = kudo.GetAddKudoMessage();
+            kudo.Text = kudo.GetKudoMessage(2);
 
             kudoRepository.Create(kudo.Map<Dbo.Kudo>());
 
@@ -32,7 +32,7 @@
                 Attachments = new List<AttachmentDto>
                 {
                     new AttachmentDto{
-                        text = $"Kudaste um amigo! És um guerreiro de Deus! :jesus:"
+                        text = $"You given a friend a kudo! You're a warrior of god! :jesus:"
                     }
                 }
             };
@@ -46,7 +46,12 @@
                 {
                     new AttachmentDto
                     {
-                        text = $@"*Available commands:*{Environment.NewLine}/kudos <add> <user-id> <text>{Environment.NewLine}/kudos <help>{Environment.NewLine}/kudos list <*/n>{Environment.NewLine}/kudos delete <kudo-id>"
+                        text = $@"*Available commands:*{Environment.NewLine}
+                                   /kudo <add> <user-id> <text>{Environment.NewLine}
+                                   /kudo <help>{Environment.NewLine}
+                                   /kudo list <*/n>{Environment.NewLine}
+                                   /kudo delete <kudo-id>{Environment.NewLine}
+                                   /kudo replace <kudo-id> <new-text>"
                     }
                 }
             };
@@ -112,6 +117,24 @@
                     new AttachmentDto
                     {
                         text = "You deleted a kudo! You bastard! :angry:"
+                    }
+                }
+            };
+        }
+
+        public ISlashCommandResponse ReplaceKudo(Kudo kudo)
+        {
+            kudo.Text = kudo.GetKudoMessage(2);
+
+            this.kudoRepository.UpdateText(kudo.Map<Dbo.Kudo>());
+
+            return new SlashCommandResponseDto
+            {
+                Attachments = new List<AttachmentDto>
+                {
+                    new AttachmentDto
+                    {
+                        text = "You changed them kudo! You did better this time? :thinking_face:"
                     }
                 }
             };

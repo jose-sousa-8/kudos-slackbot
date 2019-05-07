@@ -15,7 +15,7 @@
         {
             if (slashCommandDto == null || string.IsNullOrWhiteSpace(slashCommandDto.text))
             {
-                throw new ArgumentException("Kudo command should not be null");
+                throw new ArgumentException("You must specify a kudo command. Use /kudo help for the list of available commands.");
             }
 
             var actionString = slashCommandDto.text.Split(' ')[0];
@@ -45,8 +45,13 @@
                     {
                         CommandText = slashCommandDto.text
                     };
+                case EKudoCommandAction.Replace:
+                    return new ReplaceKudoCommand
+                    {
+                        CommandText = slashCommandDto.text
+                    };
                 default:
-                    throw new ArgumentException("Invalid kudo command. Use </kudos help> for options");
+                    throw new ArgumentException("Invalid kudo command. Use </kudo help> for options");
             }
         }
     }

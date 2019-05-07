@@ -11,6 +11,7 @@
         {
             return new Dbo.Kudo
             {
+                Id = source.Id,
                 ByUserId = source.ByUserId,
                 ByUsername = source.ByUsername,
                 ChannelId = source.ChannelId,
@@ -26,6 +27,7 @@
         {
             return new Domain.Model.Kudo
             {
+                Id = source.Id,
                 ByUserId = source.ByUserId,
                 ByUsername = source.ByUsername,
                 ChannelId = source.ChannelId,

@@ -15,6 +15,8 @@
 
         ISlashCommandResponse GetAllUserKudos(string userId);
 
+        ISlashCommandResponse ReplaceKudo(Kudo kudo);
+
         ISlashCommandResponse DeleteKudo(Guid kudoId);
     }
 }

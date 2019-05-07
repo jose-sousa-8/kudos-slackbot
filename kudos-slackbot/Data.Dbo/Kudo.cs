@@ -24,6 +24,6 @@ namespace KudosSlackbot.Data.Dbo
 
         public DateTime CreateAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

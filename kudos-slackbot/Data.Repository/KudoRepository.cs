@@ -66,6 +66,14 @@
             return id;
         }
 
+        public void UpdateText(Kudo kudo)
+        {
+            var kudoDbo = this.context.Kudos.First(k => k.Id == kudo.Id);
+            kudoDbo.Text = kudo.Text;
+            this.context.Kudos.Update(kudoDbo);
+            this.context.SaveChanges();
+        }
+
         public Kudo Get(Guid Id)
         {
             return this.context.Kudos.AsNoTracking().FirstOrDefault(k => k.Id == Id);

@@ -30,5 +30,7 @@
         IEnumerable<Kudo> GetAllByUserId(string userId);
 
         void Delete(Guid kudoId);
+
+        void UpdateText(Kudo kudo);
     }
 }
