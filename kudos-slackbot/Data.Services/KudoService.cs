@@ -33,7 +33,7 @@
                 Attachments = new List<AttachmentDto>
                 {
                     new AttachmentDto{
-                        text = $"You given a friend a kudo! You're a warrior of god! :jesus:"
+                        text = $"You've given your friend a kudo! That's cool! :sunglasses:"
                     }
                 }
             };
@@ -150,7 +150,7 @@
                 {
                     new AttachmentDto
                     {
-                        text = "You changed them kudo! You did better this time? :thinking_face:"
+                        text = "You changed the kudo! Did you do better this time? :thinking_face:"
                     }
                 }
             };
