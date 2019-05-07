@@ -37,9 +37,9 @@
 
             if (!numberOfUsers.Equals("*"))
             {
-                if (!Int32.TryParse(numberOfUsers, out int n))
+                if (!Int32.TryParse(numberOfUsers, out int n) || n <= 0)
                 {
-                    errors.Add("Invalid top list command. It should be in format /kudo top <n/*>.");
+                    errors.Add("Invalid top list command. It should be in format /kudo top n, where n > 0 or n = *");
                 }
             }
 

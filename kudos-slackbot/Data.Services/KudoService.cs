@@ -168,13 +168,30 @@
 
         private ISlashCommandResponse BuildTopUserListResponse(IEnumerable<string> users)
         {
+            if (!users.Any())
+            {
+                return new SlashCommandResponseDto
+                {
+                    Attachments = new List<AttachmentDto>
+                    {
+                        new AttachmentDto
+                        {
+                            text = "This is a sad day in Kudo history. Not a single Kudo has been given yet! :sleepy:"
+                        }
+                    }
+                };
+            }
+
+            var kingText = $":crown: {users.ElementAt(0)}";
+            users.ToList().RemoveAt(0);
+
             return new SlashCommandResponseDto
             {
                 Attachments = new List<AttachmentDto>
                 {
                     new AttachmentDto
                     {
-                        text = users.Aggregate((i, j) => i + Environment.NewLine + j)
+                        text =  kingText += users.Aggregate((i, j) => i + Environment.NewLine + j)
                     }
                 }
             };
