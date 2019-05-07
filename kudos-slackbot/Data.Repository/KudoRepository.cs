@@ -70,7 +70,7 @@
         {
             var kudoDbo = this.context.Kudos.First(k => k.Id == kudo.Id);
             kudoDbo.Text = kudo.Text;
-            kudo.UpdatedAt = DateTime.Now;
+            kudoDbo.UpdatedAt = DateTime.Now;
             this.context.Kudos.Update(kudoDbo);
             this.context.SaveChanges();
         }
