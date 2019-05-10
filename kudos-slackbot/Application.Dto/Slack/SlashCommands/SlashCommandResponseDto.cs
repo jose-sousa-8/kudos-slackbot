@@ -1,12 +1,11 @@
 ﻿namespace KudosSlackbot.Application.Dto.Slack.SlashCommands
 {
-    using System.Collections.Generic;
+    using global::Slack.Common;
 
-    using KudosSlackbot.Application.Dto.Slack.Channel;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
-    public class SlashCommandResponseDto : ISlashCommandResponse
+    public class SlackResponseMessage : ISlackResponseMessage
     {
-        public IEnumerable<AttachmentDto> Attachments { get; set; }
+        public MessagePayload Payload { get; set; }
     }
 }

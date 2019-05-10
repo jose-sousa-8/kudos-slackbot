@@ -2,7 +2,7 @@
 {
     using MediatR;
 
-    public interface IKudoRequest : IRequest<ISlashCommandResponse>
+    public interface IKudoRequest : IRequest<ISlackResponseMessage>
     {
     }
 }

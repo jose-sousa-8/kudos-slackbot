@@ -1,6 +1,9 @@
 ﻿namespace KudosSlackbot.Infrastructure.CrossCutting.CQS
 {
-    public interface ISlashCommandResponse
+    using Slack.Common;
+
+    public interface ISlackResponseMessage
     {
+        MessagePayload Payload { get; set; }
     }
 }

@@ -7,6 +7,6 @@
 
     public interface IKudoRequestFactory
     {
-        IRequest<ISlashCommandResponse> CreateKudoCommand(SlashCommandDto slashCommandDto);
+        IRequest<ISlackResponseMessage> CreateKudoCommand(SlashCommandDto slashCommandDto);
     }
 }

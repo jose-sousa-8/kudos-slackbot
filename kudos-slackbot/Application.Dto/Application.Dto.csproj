@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.CrossCutting\Infrastructure.CrossCutting.csproj" />
+    <ProjectReference Include="..\Slack.Common\Slack.Common.csproj" />
   </ItemGroup>
 
 </Project>

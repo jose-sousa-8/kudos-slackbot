@@ -12,7 +12,7 @@
 
     using MediatR;
 
-    public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, ISlashCommandResponse>
+    public class CreateKudoCommandHandler : IRequestHandler<CreateKudoCommand, ISlackResponseMessage>
     {
         private readonly IKudoService kudoService;
 
@@ -21,7 +21,7 @@
             this.kudoService = kudoService;
         }
 
-        public Task<ISlashCommandResponse> Handle(CreateKudoCommand request, CancellationToken cancellationToken)
+        public Task<ISlackResponseMessage> Handle(CreateKudoCommand request, CancellationToken cancellationToken)
         {
             try
             {

@@ -1,12 +1,8 @@
 ﻿namespace KudosSlackbot.Data.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
-    using KudosSlackbot.Application.Dto.Slack.Channel;
-    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Data.Repository;
     using KudosSlackbot.Data.Services.Extensions;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
@@ -22,44 +18,17 @@
             this.kudoRepository = kudoRepository;
         }
 
-        public ISlashCommandResponse CreateKudo(Kudo kudo)
+        public ISlackResponseMessage CreateKudo(Kudo kudo)
         {
             kudo.Text = kudo.GetKudoMessage(2);
 
             kudoRepository.Create(kudo.Map<Dbo.Kudo>());
 
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto{
-                        text = $"You've given your friend a kudo! That's cool! :sunglasses:"
-                    }
-                }
-            };
+
+            return SlackResponseHelper.BuildKudoCreatedResponse(kudo);
         }
 
-        public ISlashCommandResponse BuildHelpResponse()
-        {
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text = $@"*Available commands:*{Environment.NewLine}
-/kudo <add> <user-id> <text>{Environment.NewLine}
-/kudo <help>{Environment.NewLine}
-/kudo list <*/n>{Environment.NewLine}
-/kudo delete <kudo-id>{Environment.NewLine}
-/kudo replace <kudo-id> <new-text>{Environment.NewLine}
-/kudo user <user-id>"
-                    }
-                }
-            };
-        }
-
-        public ISlashCommandResponse GetNKudosByUserId(Kudo kudo)
+        public ISlackResponseMessage GetNKudosByUserId(Kudo kudo)
         {
             var numberOfKudos = kudo.CommandText.Split(' ')[1];
 
@@ -70,128 +39,37 @@
 
             var kudos = this.kudoRepository.GetNByUserId(kudo.UserId, Convert.ToInt32(numberOfKudos)).Select(x => x.Map<Kudo>());
 
-            return this.BuildSlashResponseFromKudoList(kudos);
+            return SlackResponseHelper.BuildSlashResponseFromKudoList(kudos);
         }
 
-        public ISlashCommandResponse GetAllUserKudos(string userId)
+        public ISlackResponseMessage GetAllUserKudos(string userId)
         {
             var kudos = this.kudoRepository.GetAllByUserId(userId).Select(x => x.Map<Kudo>());
 
-            return this.BuildSlashResponseFromKudoList(kudos);
+            return SlackResponseHelper.BuildSlashResponseFromKudoList(kudos);
         }
 
-        public ISlashCommandResponse DeleteKudo(int kudoId)
+        public ISlackResponseMessage DeleteKudo(int kudoId)
         {
             this.kudoRepository.Delete(kudoId);
 
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text = "You deleted a kudo! You bastard! :angry:"
-                    }
-                }
-            };
+            return SlackResponseHelper.BuildKudoDeletedResponse();
         }
 
-        public ISlashCommandResponse ReplaceKudo(Kudo kudo)
+        public ISlackResponseMessage ReplaceKudo(Kudo kudo)
         {
             kudo.Text = kudo.GetKudoMessage(2);
 
             this.kudoRepository.UpdateText(kudo.Map<Dbo.Kudo>());
 
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text = "You changed the kudo! Did you do better this time? :thinking_face:"
-                    }
-                }
-            };
+            return SlackResponseHelper.BuildKudoReplacedResponse(kudo);
         }
 
-        public ISlashCommandResponse GetTopUsers(string numberOfUsers)
+        public ISlackResponseMessage BuildHelpResponse() => SlackResponseHelper.BuildHelpResponse();
+
+        public ISlackResponseMessage GetTopUsers(string numberOfUsers)
         {
-            if (numberOfUsers.Equals("*"))
-            {
-                return this.BuildTopUserListResponse(this.kudoRepository.GetTopUsers());
-            }
-
-            return this.BuildTopUserListResponse(this.kudoRepository.GetTopUsers(int.Parse(numberOfUsers)));
-        }
-
-        private ISlashCommandResponse BuildSlashResponseFromKudoList(IEnumerable<Kudo> kudos)
-        {
-            if (!kudos.Any())
-            {
-                return new SlashCommandResponseDto
-                {
-                    Attachments = new List<AttachmentDto>
-                    {
-                        new AttachmentDto
-                        {
-                            text = "Not even a single kudo. What a shame! :worried:"
-                        }
-                    }
-                };
-            }
-
-            var textBuild = new StringBuilder();
-
-            var lastIndex = kudos.Count() - 1;
-
-            for (int i = 0; i < kudos.Count(); i++)
-            {
-
-                textBuild.Append($"{kudos.ElementAt(i).ByUsername} - {kudos.ElementAt(i).Text}");
-                if (i != lastIndex)
-                {
-                    textBuild.Append(Environment.NewLine);
-                }
-            }
-
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text = textBuild.ToString()
-                    }
-                }
-            };
-        }
-
-        private ISlashCommandResponse BuildTopUserListResponse(IEnumerable<string> users)
-        {
-            if (!users.Any())
-            {
-                return new SlashCommandResponseDto
-                {
-                    Attachments = new List<AttachmentDto>
-                    {
-                        new AttachmentDto
-                        {
-                            text = "This is a sad day in Kudo history. Not a single Kudo has been given yet! :sleepy:"
-                        }
-                    }
-                };
-            }
-
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text =  users.Aggregate((i, j) => i + Environment.NewLine + j)
-                    }
-                }
-            };
+            return SlackResponseHelper.BuildDummyResponse();
         }
     }
 }

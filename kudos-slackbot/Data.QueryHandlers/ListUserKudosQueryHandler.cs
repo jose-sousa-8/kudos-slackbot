@@ -12,7 +12,7 @@
 
     using MediatR;
 
-    public class ListUserKudosQueryHandler : IRequestHandler<ListUserKudosQuery, ISlashCommandResponse>
+    public class ListUserKudosQueryHandler : IRequestHandler<ListUserKudosQuery, ISlackResponseMessage>
     {
         private readonly IKudoService kudoService;
 
@@ -21,7 +21,7 @@
             this.kudoService = kudoService;
         }
 
-        public Task<ISlashCommandResponse> Handle(ListUserKudosQuery request, CancellationToken cancellationToken)
+        public Task<ISlackResponseMessage> Handle(ListUserKudosQuery request, CancellationToken cancellationToken)
         {
             try
             {

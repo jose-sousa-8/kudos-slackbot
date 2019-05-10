@@ -11,7 +11,7 @@
 
     public class KudoRequestFactory : IKudoRequestFactory
     {
-        public IRequest<ISlashCommandResponse> CreateKudoCommand(SlashCommandDto slashCommandDto)
+        public IRequest<ISlackResponseMessage> CreateKudoCommand(SlashCommandDto slashCommandDto)
         {
             if (slashCommandDto == null || string.IsNullOrWhiteSpace(slashCommandDto.text))
             {

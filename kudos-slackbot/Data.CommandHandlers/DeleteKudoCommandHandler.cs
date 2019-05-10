@@ -11,7 +11,7 @@
 
     using MediatR;
 
-    public class DeleteKudoCommandHandler : IRequestHandler<DeleteKudoCommand, ISlashCommandResponse>
+    public class DeleteKudoCommandHandler : IRequestHandler<DeleteKudoCommand, ISlackResponseMessage>
     {
         private readonly IKudoService kudoService;
 
@@ -20,7 +20,7 @@
             this.kudoService = kudoService;
         }
 
-        public Task<ISlashCommandResponse> Handle(DeleteKudoCommand request, CancellationToken cancellationToken)
+        public Task<ISlackResponseMessage> Handle(DeleteKudoCommand request, CancellationToken cancellationToken)
         {
             try
             {
