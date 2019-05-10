@@ -32,7 +32,7 @@
 
 *   Display all kudos for an individual with: `/kudo user <slack-id>`
 
-*   List the individual having the most kudos, in descending order, user the Slack command: /kudo top <n> where n is an integer or * for all individuals who have received a kudo"
+*   List users with most kudos: `/kudo top <n>` where n is an integer or * for all individuals who have received a kudo"
                 };
         }
 
