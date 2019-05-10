@@ -1,12 +1,10 @@
 ﻿namespace Slack.Common
 {
-    using System;
     using System.Collections.Generic;
 
     using Slack.Common.Attachments;
-    using Slack.Common.LayoutBlocks;
 
-    public sealed class MessagePayload
+    public sealed class AttachmentsPayload : ISlackResponseMessage
     {
         /// <summary>
         /// The usage of this field changes depending on whether you're using blocks or not. 
@@ -16,25 +14,11 @@
         /// </summary>
         public string Text { get; set; }
 
-        /// <summary>
-        /// An array of layout blocks
-        /// </summary>
-        public IEnumerable<LayoutBlock> Blocks { get; set; }
-
-        /// <summary>
-        /// An array of legacy secondary attachments. 
-        /// </summary>
-        [Obsolete("We recommend you use blocks instead.")]
         public IEnumerable<Attachment> Attachments { get; set; }
-
-        /// <summary>
-        /// The ID of another un-threaded message to reply to.
-        /// </summary>
-        public string ThreadTs { get; set; }
 
         /// <summary>
         /// Determines whether the text field is rendered according to mrkdwn formatting or not. Defaults to true.
         /// </summary>
-        public bool Markdwn { get; set; } = true;
+        public bool Mrkdwn { get; set; } = true;
     }
 }

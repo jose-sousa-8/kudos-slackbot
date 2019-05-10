@@ -6,6 +6,6 @@
 
     public class SlackResponseMessage : ISlackResponseMessage
     {
-        public MessagePayload Payload { get; set; }
+        public AttachmentsPayload Payload { get; set; }
     }
 }

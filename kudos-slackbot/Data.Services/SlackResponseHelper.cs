@@ -3,30 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    using KudosSlackbot.Application.Dto.Slack.SlashCommands;
     using KudosSlackbot.Domain.Model;
-    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     using Slack.Common;
-    using Slack.Common.LayoutBlocks;
-    using Slack.Common.LayoutBlocks.CompositionObjects;
 
     public static class SlackResponseHelper
     {
         public static ISlackResponseMessage BuildHelpResponse()
         {
-            return new SlackResponseMessage
-            {
-                Payload = new MessagePayload
+            return
+                new AttachmentsPayload
                 {
-                    Blocks = new List<Section>
-                    {
-                        new Section
-                        {
-                            Text = new TextObject
-                            {
-                                Type = "mrkdwn",
-                                Text = @"
+                    Text = @"
 -   Create a kudu: `/kudo add <slack-id> <text>` where:
 
     -   `<slack-id>` defines the individual receiving the recognition
@@ -45,11 +33,7 @@
 -   Display all kudos for an individual with: `/kudo user <slack-id>`
 
 -   List the individual having the most kudos, in descending order, user the Slack command: /kudo top <n> where n is an integer or * for all individuals who have received a kudo"
-                            }
-                        }
-                    }
-                }
-            };
+                };
         }
 
         internal static ISlackResponseMessage BuildKudoCreatedResponse(Kudo kudo)

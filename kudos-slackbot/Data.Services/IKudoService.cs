@@ -2,7 +2,8 @@
 {
 
     using KudosSlackbot.Domain.Model;
-    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
+
+    using Slack.Common;
 
     public interface IKudoService
     {

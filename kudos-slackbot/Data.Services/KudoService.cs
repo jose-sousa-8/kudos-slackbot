@@ -5,7 +5,8 @@
 
     using KudosSlackbot.Data.Repository;
     using KudosSlackbot.Data.Services.Extensions;
-    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
+
+    using Slack.Common;
 
     using Kudo = Domain.Model.Kudo;
 

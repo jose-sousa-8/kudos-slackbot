@@ -1,12 +1,11 @@
 ﻿namespace KudosSlackbot.Infrastructure.CrossCutting.CQS
 {
-    using System.Collections.Generic;
 
     using MediatR;
 
-    using Slack.Common.LayoutBlocks;
+    using Slack.Common;
 
-    public interface IKudoRequest : IRequest<IEnumerable<LayoutBlock>>
+    public interface IKudoRequest : IRequest<ISlackResponseMessage>
     {
     }
 }

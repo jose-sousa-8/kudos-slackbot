@@ -1,7 +1,6 @@
 ﻿namespace KudosSlackbot.Data.QueryHandlers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,9 +10,9 @@
 
     using MediatR;
 
-    using Slack.Common.LayoutBlocks;
+    using Slack.Common;
 
-    public class ListTopUsersQueryHandler : IRequestHandler<ListTopUsersQuery, IEnumerable<LayoutBlock>>
+    public class ListTopUsersQueryHandler : IRequestHandler<ListTopUsersQuery, ISlackResponseMessage>
     {
         private readonly IKudoService kudoService;
 
@@ -22,14 +21,14 @@
             this.kudoService = kudoService;
         }
 
-        public Task<IEnumerable<LayoutBlock>> Handle(ListTopUsersQuery request, CancellationToken cancellationToken)
+        public Task<ISlackResponseMessage> Handle(ListTopUsersQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 KudoSlashCommandValidatorFactory<ListTopUsersQuery>.GetValidator().Validate(request);
 
                 var nUsers = request.Text.Split(' ')[1];
-                return Task.FromResult(kudoService.GetTopUsers(nUsers).Payload.Blocks);
+                return Task.FromResult(kudoService.GetTopUsers(nUsers));
 
             }
             catch (Exception ex)
