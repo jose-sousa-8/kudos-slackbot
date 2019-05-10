@@ -65,6 +65,13 @@
         /// <param name="app">The application.</param>
         public void ConfigureSwagger(IApplicationBuilder app)
         {
+            bool IsSwaggerEnabled = bool.Parse(this.Configuration["Swagger:Enabled"]);
+
+            if (!IsSwaggerEnabled)
+            {
+                return;
+            }
+
             app.UseSwagger(c => { c.RouteTemplate = "{documentName}/swagger.json"; });
 
             app.UseSwaggerUI(c =>
