@@ -26,7 +26,7 @@
             {
                 KudoSlashCommandValidatorFactory<DeleteKudoCommand>.GetValidator().Validate(request);
 
-                var kudoId = Guid.Parse(request.CommandText.Split(' ')[1]);
+                var kudoId = int.Parse(request.CommandText.Split(' ')[1]);
 
                 return Task.FromResult(kudoService.DeleteKudo(kudoId));
             }

@@ -80,49 +80,7 @@
             return this.BuildSlashResponseFromKudoList(kudos);
         }
 
-        private ISlashCommandResponse BuildSlashResponseFromKudoList(IEnumerable<Kudo> kudos)
-        {
-            if (!kudos.Any())
-            {
-                return new SlashCommandResponseDto
-                {
-                    Attachments = new List<AttachmentDto>
-                    {
-                        new AttachmentDto
-                        {
-                            text = "Not even a single kudo. What a shame! :worried:"
-                        }
-                    }
-                };
-            }
-
-            var textBuild = new StringBuilder();
-
-            var lastIndex = kudos.Count() - 1;
-
-            for (int i = 0; i < kudos.Count(); i++)
-            {
-
-                textBuild.Append($"{kudos.ElementAt(i).ByUsername} - {kudos.ElementAt(i).Text}");
-                if (i != lastIndex)
-                {
-                    textBuild.Append(Environment.NewLine);
-                }
-            }
-
-            return new SlashCommandResponseDto
-            {
-                Attachments = new List<AttachmentDto>
-                {
-                    new AttachmentDto
-                    {
-                        text = textBuild.ToString()
-                    }
-                }
-            };
-        }
-
-        public ISlashCommandResponse DeleteKudo(Guid kudoId)
+        public ISlashCommandResponse DeleteKudo(int kudoId)
         {
             this.kudoRepository.Delete(kudoId);
 
@@ -164,6 +122,48 @@
             }
 
             return this.BuildTopUserListResponse(this.kudoRepository.GetTopUsers(int.Parse(numberOfUsers)));
+        }
+
+        private ISlashCommandResponse BuildSlashResponseFromKudoList(IEnumerable<Kudo> kudos)
+        {
+            if (!kudos.Any())
+            {
+                return new SlashCommandResponseDto
+                {
+                    Attachments = new List<AttachmentDto>
+                    {
+                        new AttachmentDto
+                        {
+                            text = "Not even a single kudo. What a shame! :worried:"
+                        }
+                    }
+                };
+            }
+
+            var textBuild = new StringBuilder();
+
+            var lastIndex = kudos.Count() - 1;
+
+            for (int i = 0; i < kudos.Count(); i++)
+            {
+
+                textBuild.Append($"{kudos.ElementAt(i).ByUsername} - {kudos.ElementAt(i).Text}");
+                if (i != lastIndex)
+                {
+                    textBuild.Append(Environment.NewLine);
+                }
+            }
+
+            return new SlashCommandResponseDto
+            {
+                Attachments = new List<AttachmentDto>
+                {
+                    new AttachmentDto
+                    {
+                        text = textBuild.ToString()
+                    }
+                }
+            };
         }
 
         private ISlashCommandResponse BuildTopUserListResponse(IEnumerable<string> users)

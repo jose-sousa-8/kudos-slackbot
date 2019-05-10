@@ -4,7 +4,7 @@ namespace KudosSlackbot.Data.Dbo
 {
     public class Kudo
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string UserId { get; set; }
 

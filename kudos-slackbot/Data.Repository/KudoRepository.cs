@@ -19,12 +19,12 @@
             this.context = context;
         }
 
-        public Guid Create(Kudo kudo)
+        public int Create(Kudo kudo)
         {
             return this.Create(kudo, default(CancellationToken));
         }
 
-        public Guid Create(Kudo kudo, CancellationToken cancelationToken = default(CancellationToken))
+        public int Create(Kudo kudo, CancellationToken cancelationToken = default(CancellationToken))
         {
             kudo.CreateAt = DateTime.Now;
 
@@ -35,12 +35,12 @@
             return id;
         }
 
-        public async Task<Guid> CreateAsync(Kudo kudo)
+        public async Task<int> CreateAsync(Kudo kudo)
         {
             return await this.CreateAsync(kudo, default(CancellationToken)).ConfigureAwait(false);
         }
 
-        public async Task<Guid> CreateAsync(Kudo kudo, CancellationToken cancelationToken)
+        public async Task<int> CreateAsync(Kudo kudo, CancellationToken cancelationToken)
         {
             kudo.CreateAt = DateTime.Now;
 
@@ -51,12 +51,12 @@
             return entry.Entity.Id;
         }
 
-        public Guid Update(Kudo kudo)
+        public int Update(Kudo kudo)
         {
             return this.Update(kudo, default(CancellationToken));
         }
 
-        public Guid Update(Kudo kudo, CancellationToken cancelationToken = default(CancellationToken))
+        public int Update(Kudo kudo, CancellationToken cancelationToken = default(CancellationToken))
         {
             kudo.UpdatedAt = DateTime.Now;
             var id = this.context.Kudos.Update(kudo).Entity.Id;
@@ -75,12 +75,12 @@
             this.context.SaveChanges();
         }
 
-        public Kudo Get(Guid Id)
+        public Kudo Get(int Id)
         {
             return this.context.Kudos.AsNoTracking().FirstOrDefault(k => k.Id == Id);
         }
 
-        public async Task<Kudo> GetAsync(Guid Id)
+        public async Task<Kudo> GetAsync(int Id)
         {
             return await this.context.Kudos.AsNoTracking().FirstOrDefaultAsync(k => k.Id == Id);
         }
@@ -100,7 +100,7 @@
             return this.context.Kudos.AsNoTracking().Where(k => k.UserId == userId).OrderByDescending(x => x.CreateAt);
         }
 
-        public void Delete(Guid kudoId)
+        public void Delete(int kudoId)
         {
             this.context.Kudos.Remove(new Kudo { Id = kudoId });
             this.context.SaveChanges();

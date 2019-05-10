@@ -1,10 +1,8 @@
 ﻿namespace KudosSlackbot.Domain.Model
 {
-    using System;
-
     public class Kudo
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string UserId { get; set; }
 

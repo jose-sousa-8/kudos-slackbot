@@ -1,6 +1,5 @@
 ﻿namespace KudosSlackbot.Data.Services
 {
-    using System;
 
     using KudosSlackbot.Domain.Model;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
@@ -17,7 +16,7 @@
 
         ISlashCommandResponse ReplaceKudo(Kudo kudo);
 
-        ISlashCommandResponse DeleteKudo(Guid kudoId);
+        ISlashCommandResponse DeleteKudo(int kudoId);
 
         ISlashCommandResponse GetTopUsers(string numberOfUsers);
     }

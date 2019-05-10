@@ -28,7 +28,7 @@
 
                 var kudo = new Domain.Model.Kudo
                 {
-                    Id = Guid.Parse(request.CommandText.Split(' ')[1]),
+                    Id = int.Parse(request.CommandText.Split(' ')[1]),
                     CommandText = request.CommandText
                 };
 
