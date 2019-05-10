@@ -1,17 +1,19 @@
 ﻿namespace KudosSlackbot.Data.CommandHandlers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
     using KudosSlackbot.Application.Commands;
     using KudosSlackbot.Data.Services;
     using KudosSlackbot.Data.Services.Validators;
-    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     using MediatR;
 
-    public class ReplaceKudoCommandHandler : IRequestHandler<ReplaceKudoCommand, ISlackResponseMessage>
+    using Slack.Common.LayoutBlocks;
+
+    public class ReplaceKudoCommandHandler : IRequestHandler<ReplaceKudoCommand, IEnumerable<LayoutBlock>>
     {
         private readonly IKudoService kudoService;
 
@@ -20,7 +22,7 @@
             this.kudoService = kudoService;
         }
 
-        public Task<ISlackResponseMessage> Handle(ReplaceKudoCommand request, CancellationToken cancellationToken)
+        public Task<IEnumerable<LayoutBlock>> Handle(ReplaceKudoCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -32,7 +34,7 @@
                     CommandText = request.CommandText
                 };
 
-                return Task.FromResult(kudoService.ReplaceKudo(kudo));
+                return Task.FromResult(kudoService.ReplaceKudo(kudo).Payload.Blocks);
             }
             catch (Exception ex)
             {

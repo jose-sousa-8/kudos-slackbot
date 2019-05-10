@@ -1,16 +1,18 @@
 ﻿namespace KudosSlackbot.Data.QueryHandlers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
     using KudosSlackbot.Application.Queries;
     using KudosSlackbot.Data.Services;
-    using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
     using MediatR;
 
-    public class HelpKudoQueryHandler : IRequestHandler<HelpKudoQuery, ISlackResponseMessage>
+    using Slack.Common.LayoutBlocks;
+
+    public class HelpKudoQueryHandler : IRequestHandler<HelpKudoQuery, IEnumerable<LayoutBlock>>
     {
         private readonly IKudoService kudoService;
 
@@ -19,11 +21,11 @@
             this.kudoService = kudoService;
         }
 
-        public Task<ISlackResponseMessage> Handle(HelpKudoQuery request, CancellationToken cancellationToken)
+        public Task<IEnumerable<LayoutBlock>> Handle(HelpKudoQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                return Task.FromResult(kudoService.BuildHelpResponse());
+                return Task.FromResult(kudoService.BuildHelpResponse().Payload.Blocks);
             }
             catch (Exception ex)
             {

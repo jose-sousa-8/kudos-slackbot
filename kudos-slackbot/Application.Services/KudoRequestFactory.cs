@@ -7,11 +7,9 @@
     using KudosSlackbot.Application.Queries;
     using KudosSlackbot.Infrastructure.CrossCutting.CQS;
 
-    using MediatR;
-
     public class KudoRequestFactory : IKudoRequestFactory
     {
-        public IRequest<ISlackResponseMessage> CreateKudoCommand(SlashCommandDto slashCommandDto)
+        public IKudoRequest CreateKudoCommand(SlashCommandDto slashCommandDto)
         {
             if (slashCommandDto == null || string.IsNullOrWhiteSpace(slashCommandDto.text))
             {

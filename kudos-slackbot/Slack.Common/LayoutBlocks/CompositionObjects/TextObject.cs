@@ -7,7 +7,7 @@
         /// <summary>
         /// The formatting to use for this text object. Can be one of plain_textor mrkdwn.
         /// </summary>
-        public TextObjectType TypeEnum { get; set; }
+        //public TextObjectType TypeEnum { get; set; }
 
         /// <summary>
         /// The formatting to use for this text object. Can be one of plain_textor mrkdwn.
@@ -22,7 +22,7 @@
         /// <summary>
         /// Indicates whether emojis in a text field should be escaped into the colon emoji format. This field is only usable when type is plain_text.
         /// </summary>
-        public bool Emoji { get; set; }
+        //public bool Emoji { get; set; }
 
         /// <summary>
         /// When set to false (as is default) URLs will be auto-converted into links, conversation names will be link-ified, 
@@ -30,7 +30,7 @@
         /// Using a value of true will skip any preprocessing of this nature, although you can still include manual parsing strings. 
         /// This field is only usable when type is mrkdwn.
         /// </summary>
-        public bool Verbatim { get; set; }
+        //public bool Verbatim { get; set; }
     }
 
     public enum TextObjectType
