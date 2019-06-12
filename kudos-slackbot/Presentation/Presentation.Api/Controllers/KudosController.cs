@@ -43,7 +43,7 @@
                     return Ok(ex.Message);
                 }
 
-                throw ex;
+                throw;
             }
         }
     }
