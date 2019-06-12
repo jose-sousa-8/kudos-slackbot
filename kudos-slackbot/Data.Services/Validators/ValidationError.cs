@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace KudosSlackbot.Domain.Services
 {
@@ -8,19 +9,19 @@ namespace KudosSlackbot.Domain.Services
 
         public string ErrorMessage
         {
-            get => this.SetErrorMessage(this.Errors);
+            get => this.SetErrorMessage();
         }
 
-        private string SetErrorMessage(IEnumerable<string> Errors)
+        private string SetErrorMessage()
         {
-            string errorMsg = string.Empty;
+            var errorMsgBuilder = new StringBuilder();
 
             foreach (var error in this.Errors)
             {
-                errorMsg += string.Format($"{error}; ");
+                errorMsgBuilder.Append($"{error}; ");
             }
 
-            return errorMsg;
+            return errorMsgBuilder.ToString();
         }
     }
 }

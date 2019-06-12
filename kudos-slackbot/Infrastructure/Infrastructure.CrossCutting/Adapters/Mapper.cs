@@ -12,7 +12,7 @@
         {
             if (source == null)
             {
-                return null;
+                return Enumerable.Empty<TTarget>();
             }
             else if (!source.Any())
             {

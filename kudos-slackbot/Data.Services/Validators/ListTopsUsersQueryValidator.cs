@@ -35,12 +35,9 @@
 
             var numberOfUsers = parcels[1];
 
-            if (!numberOfUsers.Equals("*"))
+            if (!numberOfUsers.Equals("*") && (!Int32.TryParse(numberOfUsers, out int n) || n <= 0))
             {
-                if (!Int32.TryParse(numberOfUsers, out int n) || n <= 0)
-                {
-                    errors.Add("Invalid top list command. It should be in format /kudo top n, where n > 0 or n = *");
-                }
+                errors.Add("Invalid top list command. It should be in format /kudo top n, where n > 0 or n = *");
             }
 
             return new ValidationResult { Errors = errors };

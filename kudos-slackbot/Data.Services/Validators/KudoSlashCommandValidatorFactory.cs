@@ -38,7 +38,7 @@
             }
 
 
-            throw new System.Exception("Uknown Kudo Command.");
+            throw new System.InvalidOperationException("Unknown Kudo Command.");
         }
     }
 }

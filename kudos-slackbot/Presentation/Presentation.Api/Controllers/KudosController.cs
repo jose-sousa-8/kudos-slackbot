@@ -15,7 +15,7 @@
     [ApiController]
     public class KudosController : BaseController
     {
-        private IKudoRequestFactory kudoCommandFactory;
+        private readonly IKudoRequestFactory kudoCommandFactory;
 
         public KudosController(IMediator mediator, IKudoRequestFactory kudoCommandFactory) : base(mediator)
         {
